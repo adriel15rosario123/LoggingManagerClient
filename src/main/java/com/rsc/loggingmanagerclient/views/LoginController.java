@@ -26,9 +26,9 @@ public class LoginController {
 
     public void init(LoginViewModel viewModel){
         this.viewModel = viewModel;
-        this.errorMessageLb.textProperty().bindBidirectional(this.viewModel.badCredentialsProperty());
-        this.usernameTf.textProperty().bindBidirectional(this.viewModel.usernameProperty());
-        this.passwordPf.textProperty().bindBidirectional(this.viewModel.passwordProperty());
+        this.errorMessageLb.textProperty().bindBidirectional(this.viewModel.loginModel().badCredentialsProperty());
+        this.usernameTf.textProperty().bindBidirectional(this.viewModel.loginModel().usernameProperty());
+        this.passwordPf.textProperty().bindBidirectional(this.viewModel.loginModel().passwordProperty());
         this.loginBt.disableProperty().bindBidirectional(this.viewModel.isRunningProperty());
     }
 

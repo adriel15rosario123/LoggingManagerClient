@@ -2,7 +2,7 @@ package com.rsc.loggingmanagerclient.dtos;
 
 import java.util.Date;
 
-public class EnrollSystem {
+public class SystemDto {
 
     private int enrolledSystemId;
     private String systemName;
@@ -11,7 +11,7 @@ public class EnrollSystem {
     private int errorLogs;
     private int trackingLogs;
 
-    public EnrollSystem() {
+    public SystemDto() {
     }
 
     public int getEnrolledSystemId() {

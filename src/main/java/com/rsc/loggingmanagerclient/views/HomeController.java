@@ -1,6 +1,6 @@
 package com.rsc.loggingmanagerclient.views;
 
-import com.rsc.loggingmanagerclient.models.SystemEnrollModel;
+import com.rsc.loggingmanagerclient.models.SystemModel;
 import com.rsc.loggingmanagerclient.viewmodels.HomeViewModel;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -16,25 +16,25 @@ import javafx.util.Callback;
 public class HomeController {
 
     @FXML
-    private TableView<SystemEnrollModel> EnrolledSystemsTv;
+    private TableView<SystemModel> EnrolledSystemsTv;
 
     @FXML
-    private TableColumn<SystemEnrollModel, String> EnrolledDateTc;
+    private TableColumn<SystemModel, String> EnrolledDateTc;
 
     @FXML
-    private TableColumn<SystemEnrollModel, Integer> ErrorLogsTc;
+    private TableColumn<SystemModel, Integer> ErrorLogsTc;
 
     @FXML
-    private TableColumn<SystemEnrollModel, String> LastUpdateTc;
+    private TableColumn<SystemModel, String> LastUpdateTc;
 
     @FXML
-    private TableColumn<SystemEnrollModel, String> SystemNameTc;
+    private TableColumn<SystemModel, String> SystemNameTc;
 
     @FXML
-    private TableColumn<SystemEnrollModel, Integer> TrackingLogsTc;
+    private TableColumn<SystemModel, Integer> TrackingLogsTc;
 
     @FXML
-    private TableColumn<SystemEnrollModel, Void> OperationsTc;
+    private TableColumn<SystemModel, Void> OperationsTc;
 
     @FXML
     private Button logoutBt;
@@ -59,11 +59,11 @@ public class HomeController {
         this.ErrorLogsTc.setCellValueFactory(new PropertyValueFactory<>("errorLogs"));
         this.TrackingLogsTc.setCellValueFactory(new PropertyValueFactory<>("trackingLogs"));
 
-        this.ErrorLogsTc.setCellFactory(new Callback<TableColumn<SystemEnrollModel, Integer>, TableCell<SystemEnrollModel, Integer>>() {
+        this.ErrorLogsTc.setCellFactory(new Callback<TableColumn<SystemModel, Integer>, TableCell<SystemModel, Integer>>() {
             @Override
-            public TableCell<SystemEnrollModel, Integer> call(TableColumn<SystemEnrollModel, Integer> systemEnrollModelIntegerTableColumn) {
+            public TableCell<SystemModel, Integer> call(TableColumn<SystemModel, Integer> systemEnrollModelIntegerTableColumn) {
 
-                return new TableCell<SystemEnrollModel,Integer>(){
+                return new TableCell<SystemModel,Integer>(){
                     private Label errorLogCount = new Label();
                     private Button openErrorLogsBt = new Button();
                     private Region spacer = new Region();
@@ -89,7 +89,7 @@ public class HomeController {
                         openErrorLogsBt.setGraphic(openIcon);
 
                         openErrorLogsBt.setOnAction(event -> {
-                            SystemEnrollModel system = getTableView().getItems().get(getIndex());
+                            SystemModel system = getTableView().getItems().get(getIndex());
                             //homeViewModel.deleteSystem(system);
                         });
                     }
@@ -112,11 +112,11 @@ public class HomeController {
             }
         });
 
-        this.TrackingLogsTc.setCellFactory(new Callback<TableColumn<SystemEnrollModel, Integer>, TableCell<SystemEnrollModel, Integer>>() {
+        this.TrackingLogsTc.setCellFactory(new Callback<TableColumn<SystemModel, Integer>, TableCell<SystemModel, Integer>>() {
             @Override
-            public TableCell<SystemEnrollModel, Integer> call(TableColumn<SystemEnrollModel, Integer> systemEnrollModelIntegerTableColumn) {
+            public TableCell<SystemModel, Integer> call(TableColumn<SystemModel, Integer> systemEnrollModelIntegerTableColumn) {
 
-                return new TableCell<SystemEnrollModel,Integer>(){
+                return new TableCell<SystemModel,Integer>(){
                     private Label trackingLogCount = new Label();
                     private Button openTrackingLogsBt = new Button();
                     private Region spacer = new Region();
@@ -142,7 +142,7 @@ public class HomeController {
                         openTrackingLogsBt.setGraphic(openIcon);
 
                         openTrackingLogsBt.setOnAction(event -> {
-                            SystemEnrollModel system = getTableView().getItems().get(getIndex());
+                            SystemModel system = getTableView().getItems().get(getIndex());
                             //homeViewModel.deleteSystem(system);
                         });
                     }
@@ -166,10 +166,10 @@ public class HomeController {
         });
 
         // Initialize the Operations column with buttons
-        this.OperationsTc.setCellFactory(new Callback<TableColumn<SystemEnrollModel, Void>, TableCell<SystemEnrollModel, Void>>() {
+        this.OperationsTc.setCellFactory(new Callback<TableColumn<SystemModel, Void>, TableCell<SystemModel, Void>>() {
             @Override
-            public TableCell<SystemEnrollModel, Void> call(final TableColumn<SystemEnrollModel, Void> param) {
-                return new TableCell<SystemEnrollModel, Void>() {
+            public TableCell<SystemModel, Void> call(final TableColumn<SystemModel, Void> param) {
+                return new TableCell<SystemModel, Void>() {
                     private Button deleteButton = new Button();
                     private Button updateButton = new Button();
 
@@ -209,12 +209,12 @@ public class HomeController {
                         updateButton.setGraphic(updateIcon);
 
                         deleteButton.setOnAction(event -> {
-                            SystemEnrollModel system = getTableView().getItems().get(getIndex());
+                            SystemModel system = getTableView().getItems().get(getIndex());
                             //homeViewModel.deleteSystem(system);
                         });
 
                         updateButton.setOnAction(event -> {
-                            SystemEnrollModel system = getTableView().getItems().get(getIndex());
+                            SystemModel system = getTableView().getItems().get(getIndex());
                             //homeViewModel.updateSystem(system);
                         });
                     }

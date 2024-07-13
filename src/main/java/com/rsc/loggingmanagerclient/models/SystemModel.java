@@ -5,7 +5,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class SystemEnrollModel {
+public class SystemModel {
+
+    private static StringProperty numberOfSystems = new SimpleStringProperty("");
     private IntegerProperty enrolledSystemId;
     private StringProperty systemName;
     private StringProperty enrolledDate;
@@ -13,7 +15,7 @@ public class SystemEnrollModel {
     private IntegerProperty errorLogs;
     private IntegerProperty trackingLogs;
 
-    public SystemEnrollModel(int enrolledSystemId, String systemName, String enrolledDate, String lastUpdatedDate, int errorLogs, int trackingLogs) {
+    public SystemModel(int enrolledSystemId, String systemName, String enrolledDate, String lastUpdatedDate, int errorLogs, int trackingLogs) {
         this.enrolledSystemId = new SimpleIntegerProperty(enrolledSystemId);
         this.systemName = new SimpleStringProperty(systemName);
         this.enrolledDate = new SimpleStringProperty(enrolledDate);
@@ -93,4 +95,18 @@ public class SystemEnrollModel {
     public void setTrackingLogs(int trackingLogs) {
         this.trackingLogs.set(trackingLogs);
     }
+
+    public static String getNumberOfSystems() {
+        return numberOfSystems.get();
+    }
+
+    public static StringProperty numberOfSystemsProperty() {
+        return numberOfSystems;
+    }
+
+    public static void setNumberOfSystems(int number){
+        numberOfSystems.set(String.valueOf(number));
+    }
+
+
 }

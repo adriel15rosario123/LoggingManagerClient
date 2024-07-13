@@ -3,8 +3,8 @@ package com.rsc.loggingmanagerclient.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rsc.loggingmanagerclient.contracts.ISystemService;
-import com.rsc.loggingmanagerclient.dtos.ApiResponse;
-import com.rsc.loggingmanagerclient.dtos.EnrollSystem;
+import com.rsc.loggingmanagerclient.dtos.BaseDto;
+import com.rsc.loggingmanagerclient.dtos.SystemDto;
 import com.rsc.loggingmanagerclient.enums.ApiUrl;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
 
@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SystemService implements ISystemService {
     @Override
-    public List<EnrollSystem> getAll() {
+    public List<SystemDto> getAll() {
 
         String accessToken = TokenHandler.getPref("jwt");
         String url = ApiUrl.BASE_URL.toString()+ "systems";
@@ -35,9 +35,9 @@ public class SystemService implements ISystemService {
 
             ObjectMapper objectMapper = new ObjectMapper();
 
-            TypeReference<ApiResponse<List<EnrollSystem>>> typeRef = new TypeReference<>() {};
+            TypeReference<BaseDto<List<SystemDto>>> typeRef = new TypeReference<>() {};
 
-            ApiResponse<List<EnrollSystem>> response = objectMapper.readValue(httpResponse.body(),typeRef);
+            BaseDto<List<SystemDto>> response = objectMapper.readValue(httpResponse.body(),typeRef);
 
             return response.getResponseData();
 

@@ -1,10 +1,8 @@
 package com.rsc.loggingmanagerclient.helpers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rsc.loggingmanagerclient.dtos.ApiResponse;
-import com.rsc.loggingmanagerclient.dtos.TokenStatus;
+import com.rsc.loggingmanagerclient.dtos.TokenDto;
 import com.rsc.loggingmanagerclient.enums.ApiUrl;
-import com.rsc.loggingmanagerclient.models.User;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -42,9 +40,9 @@ public class TokenHandler {
 
             System.out.println(response.body());
 
-            TokenStatus tokenStatus = objectMapper.readValue(response.body(),TokenStatus.class);
+            TokenDto tokenDto = objectMapper.readValue(response.body(), TokenDto.class);
 
-            return tokenStatus.getActive();
+            return tokenDto.getIsActive();
 
         }catch (Exception e){
             e.printStackTrace();

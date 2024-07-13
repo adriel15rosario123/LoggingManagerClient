@@ -1,8 +1,8 @@
 package com.rsc.loggingmanagerclient.contracts;
 
-import com.rsc.loggingmanagerclient.models.Credential;
-import com.rsc.loggingmanagerclient.models.User;
+import com.rsc.loggingmanagerclient.dtos.CredentialDto;
+import com.rsc.loggingmanagerclient.dtos.UserDto;
 
 public interface IAuthService {
-    User login(Credential credential);
+    UserDto login(CredentialDto credentialDto);
 }

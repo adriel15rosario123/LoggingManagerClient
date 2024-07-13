@@ -1,33 +1,34 @@
 package com.rsc.loggingmanagerclient.viewmodels;
 
 import com.rsc.loggingmanagerclient.contracts.IAuthService;
+import com.rsc.loggingmanagerclient.dtos.UserDto;
 import com.rsc.loggingmanagerclient.enums.ViewEnum;
-import com.rsc.loggingmanagerclient.models.Credential;
-import com.rsc.loggingmanagerclient.models.User;
+import com.rsc.loggingmanagerclient.dtos.CredentialDto;
+import com.rsc.loggingmanagerclient.models.LoginModel;
 import javafx.beans.property.*;
 import javafx.concurrent.Task;
 
 public class LoginViewModel extends BaseViewModel {
 
-    private StringProperty username;
-    private StringProperty password;
-    private StringProperty badCredentials;
+    private LoginModel loginModel;
     private IAuthService authService;
 
     public LoginViewModel(IAuthService userService){
         this.authService = userService;
-        this.username = new SimpleStringProperty("");
-        this.password = new SimpleStringProperty("");
-        this.badCredentials = new SimpleStringProperty("");
+        this.loginModel = new LoginModel();
+    }
+
+    public LoginModel loginModel() {
+        return this.loginModel;
     }
 
     public void LogIn(){
-        Task<User> login = new Task<>() {
+        Task<UserDto> login = new Task<>() {
             @Override
-            protected User call() throws Exception {
+            protected UserDto call() throws Exception {
 
-                String currentUsername = username.get();
-                String currentPassword = password.get();
+                String currentUsername = loginModel.getUsername();
+                String currentPassword = loginModel.getPassword();
 
                 // Simulate a long-running operation
                 for (int i = 0; i <= 100; i++) {
@@ -39,16 +40,16 @@ public class LoginViewModel extends BaseViewModel {
                     Thread.sleep(10);
                 }
 
-                User user = authService.login(new Credential(currentUsername,currentPassword));
+                UserDto userDto = authService.login(new CredentialDto(currentUsername,currentPassword));
 
-                return user;
+                return userDto;
             }
         };
 
         executeTask(login,() -> {
 
             if(login.getValue() == null){
-                badCredentials.set("invalid username/password!!");
+                loginModel.setBadCredentials("invalid username/password!!");
             } else if (login.getValue().getUserType().getType().equals("admin")) {
                 try {
                     viewHandler.openView(ViewEnum.HOME);
@@ -63,16 +64,5 @@ public class LoginViewModel extends BaseViewModel {
 
     }
 
-    public StringProperty usernameProperty() {
-        return username;
-    }
-
-    public StringProperty passwordProperty() {
-        return password;
-    }
-
-    public StringProperty badCredentialsProperty() {
-        return badCredentials;
-    }
 
 }

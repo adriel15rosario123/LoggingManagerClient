@@ -1,23 +1,23 @@
 package com.rsc.loggingmanagerclient.dtos;
 
-public class ApiResponse<T> {
+public class BaseDto<T> {
 
     private T responseData;
     private int errorCode;
     private String errorMessage;
 
-    public ApiResponse(T responseData, int errorCode, String errorMessage) {
+    public BaseDto(T responseData, int errorCode, String errorMessage) {
         this.responseData = responseData;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
 
-    public ApiResponse(int errorCode, String errorMessage) {
+    public BaseDto(int errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
 
-    public ApiResponse(){
+    public BaseDto(){
 
     }
 

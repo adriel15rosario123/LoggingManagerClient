@@ -1,18 +1,18 @@
-package com.rsc.loggingmanagerclient.models;
+package com.rsc.loggingmanagerclient.dtos;
 
-public class User {
+public class UserDto {
 
     private int userId;
     private String username;
-    private UserType userType;
+    private UserTypeDto userTypeDto;
 
-    public User(int userId, String username, UserType userType) {
+    public UserDto(int userId, String username, UserTypeDto userTypeDto) {
         this.userId = userId;
         this.username = username;
-        this.userType = userType;
+        this.userTypeDto = userTypeDto;
     }
 
-    public User() {
+    public UserDto() {
     }
 
     public int getUserId() {
@@ -31,11 +31,11 @@ public class User {
         this.username = username;
     }
 
-    public UserType getUserType() {
-        return userType;
+    public UserTypeDto getUserType() {
+        return userTypeDto;
     }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setUserType(UserTypeDto userTypeDto) {
+        this.userTypeDto = userTypeDto;
     }
 }
