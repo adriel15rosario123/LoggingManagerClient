@@ -25,7 +25,7 @@ public class ViewModelFactory {
     }
 
     public HomeViewModel getHomeViewModel(){
-        this.homeViewModel = new HomeViewModel();
+        this.homeViewModel = new HomeViewModel(serviceFactory.getSystemService());
         return this.homeViewModel;
     }
 

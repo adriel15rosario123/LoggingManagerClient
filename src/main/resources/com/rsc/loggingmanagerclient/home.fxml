@@ -9,18 +9,19 @@
 <AnchorPane prefHeight="408.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rsc.loggingmanagerclient.views.HomeController">
    <children>
       <Button fx:id="logoutBt" layoutX="618.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #e66c6c;" text="logout" textFill="WHITE" />
-      <Label layoutX="16.0" layoutY="59.0" text="current enrolled systems" />
-      <TableView layoutX="16.0" layoutY="76.0" prefHeight="258.0" prefWidth="672.0">
+      <Label layoutX="16.0" layoutY="59.0" text="ENROLLED SYSTEMS TABLE" />
+      <TableView fx:id="EnrolledSystemsTv" layoutX="14.0" layoutY="83.0" prefHeight="258.0" prefWidth="672.0">
         <columns>
-          <TableColumn prefWidth="107.0" text="System Name" />
-          <TableColumn prefWidth="110.0" text="Enrolled date" />
-            <TableColumn prefWidth="118.0" text="Error logs" />
-            <TableColumn prefWidth="116.0" text="Tracking logs" />
-            <TableColumn prefWidth="127.0" text="Operations" />
+          <TableColumn fx:id="SystemNameTc" prefWidth="117.0" text="System Name" />
+          <TableColumn fx:id="EnrolledDateTc" prefWidth="119.0" text="Enroll date" />
+            <TableColumn fx:id="LastUpdateTc" prefWidth="123.0" text="Last Update" />
+            <TableColumn fx:id="ErrorLogsTc" prefWidth="104.0" text="Error logs" />
+            <TableColumn fx:id="TrackingLogsTc" prefWidth="108.0" text="Tracking logs" />
+            <TableColumn fx:id="OperationsTc" prefWidth="99.0" text="Operations" />
         </columns>
       </TableView>
-      <Label layoutX="16.0" layoutY="339.0" text="number of enroll systems: " />
-      <Label layoutX="156.0" layoutY="339.0" text="3" />
+      <Label layoutX="16.0" layoutY="348.0" text="NO. OF RESULTS:" />
+      <Label fx:id="NumOfSysLb" layoutX="115.0" layoutY="348.0" text="3" />
       <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #9d9ee3;" text="enroll system" textFill="WHITE" />
    </children>
 </AnchorPane>
