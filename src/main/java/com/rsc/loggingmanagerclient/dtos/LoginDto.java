@@ -1,22 +1,20 @@
 package com.rsc.loggingmanagerclient.dtos;
 
-import com.rsc.loggingmanagerclient.models.User;
-
 import java.util.Date;
 
-public class LoginResponse{
+public class LoginDto {
 
     private String accessToken;
     private Date expires;
-    private ApiResponse<User> response;
+    private BaseDto<UserDto> response;
 
-    public LoginResponse(String accessToken, Date expiresAt, ApiResponse<User> response) {
+    public LoginDto(String accessToken, Date expiresAt, BaseDto<UserDto> response) {
         this.accessToken = accessToken;
         this.expires = expiresAt;
         this.response = response;
     }
 
-    public LoginResponse() {
+    public LoginDto() {
 
     }
 
@@ -36,11 +34,11 @@ public class LoginResponse{
         this.expires = expiresAt;
     }
 
-    public ApiResponse<User> getResponse() {
+    public BaseDto<UserDto> getResponse() {
         return response;
     }
 
-    public void setResponse(ApiResponse<User> response) {
+    public void setResponse(BaseDto<UserDto> response) {
         this.response = response;
     }
 }

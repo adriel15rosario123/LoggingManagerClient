@@ -1,11 +1,11 @@
-package com.rsc.loggingmanagerclient.models;
+package com.rsc.loggingmanagerclient.dtos;
 
-public class Credential {
+public class CredentialDto {
 
     private String username;
     private String password;
 
-    public Credential(String username,String password) {
+    public CredentialDto(String username, String password) {
         this.username = username;
         this.password = password;
     }
