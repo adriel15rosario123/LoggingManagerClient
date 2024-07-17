@@ -1,6 +1,6 @@
 package com.rsc.loggingmanagerclient.enums;
 
-public enum ViewEnum {
+public enum Views {
     LOGIN{
         @Override
         public String toString() {
@@ -17,6 +17,13 @@ public enum ViewEnum {
         @Override
         public String toString() {
             return "logout-popup.fxml";
+        }
+    },
+
+    SERVER_OFF_MODAL{
+        @Override
+        public String toString() {
+            return "server-off-popup.fxml";
         }
     }
 }

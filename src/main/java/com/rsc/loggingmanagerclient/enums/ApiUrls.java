@@ -1,6 +1,6 @@
 package com.rsc.loggingmanagerclient.enums;
 
-public enum ApiUrl {
+public enum ApiUrls {
     BASE_URL{
         @Override
         public String toString() {

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rsc.loggingmanagerclient.contracts.ISystemService;
 import com.rsc.loggingmanagerclient.dtos.BaseDto;
 import com.rsc.loggingmanagerclient.dtos.SystemDto;
-import com.rsc.loggingmanagerclient.enums.ApiUrl;
+import com.rsc.loggingmanagerclient.enums.ApiUrls;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
 
 import java.net.URI;
@@ -19,7 +19,7 @@ public class SystemService implements ISystemService {
     public List<SystemDto> getAll() {
 
         String accessToken = TokenHandler.getPref("jwt");
-        String url = ApiUrl.BASE_URL.toString()+ "systems";
+        String url = ApiUrls.BASE_URL+ "systems";
 
         try(HttpClient httpClient = HttpClient.newHttpClient()){
 
@@ -39,7 +39,7 @@ public class SystemService implements ISystemService {
 
             BaseDto<List<SystemDto>> response = objectMapper.readValue(httpResponse.body(),typeRef);
 
-            return response.getResponseData();
+            return response.getData();
 
         }catch(Exception e){
             e.printStackTrace();

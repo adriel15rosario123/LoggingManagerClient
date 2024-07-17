@@ -2,7 +2,7 @@ package com.rsc.loggingmanagerclient.viewmodels;
 
 import com.rsc.loggingmanagerclient.contracts.ISystemService;
 import com.rsc.loggingmanagerclient.dtos.SystemDto;
-import com.rsc.loggingmanagerclient.enums.ViewEnum;
+import com.rsc.loggingmanagerclient.enums.Views;
 import com.rsc.loggingmanagerclient.models.SystemModel;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -43,11 +43,7 @@ public class HomeViewModel extends BaseViewModel{
     }
 
     public void logout(){
-        try {
-            viewHandler.openModal(ViewEnum.LOGOUT_MODAL);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        viewHandler.openModal(Views.LOGOUT_MODAL);
     }
 
     public ObservableList<SystemModel> getSystems() {

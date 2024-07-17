@@ -2,11 +2,11 @@ package com.rsc.loggingmanagerclient.dtos;
 
 public class UserDto {
 
-    private int userId;
+    private Integer userId;
     private String username;
     private UserTypeDto userTypeDto;
 
-    public UserDto(int userId, String username, UserTypeDto userTypeDto) {
+    public UserDto(Integer userId, String username, UserTypeDto userTypeDto) {
         this.userId = userId;
         this.username = username;
         this.userTypeDto = userTypeDto;
@@ -15,12 +15,20 @@ public class UserDto {
     public UserDto() {
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public UserTypeDto getUserTypeDto() {
+        return userTypeDto;
+    }
+
+    public void setUserTypeDto(UserTypeDto userTypeDto) {
+        this.userTypeDto = userTypeDto;
     }
 
     public String getUsername() {

@@ -1,16 +1,28 @@
 package com.rsc.loggingmanagerclient.dtos;
 
+import java.util.Date;
+
 public class TokenDto {
-    private Boolean isActive;
+    private String key;
+    private Date expiresAt;
 
     public TokenDto() {
+
     }
 
-    public Boolean getIsActive() {
-        return this.isActive;
+    public String getKey() {
+        return key;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public Date getExpiresAt() {
+        return expiresAt;
+    }
+
+    public void setExpiresAt(Date expiresAt) {
+        this.expiresAt = expiresAt;
     }
 }

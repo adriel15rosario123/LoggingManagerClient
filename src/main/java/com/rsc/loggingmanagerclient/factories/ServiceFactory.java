@@ -16,7 +16,7 @@ public class ServiceFactory {
         this.systemService = new SystemService();
     }
 
-    public IAuthService getUserService(){
+    public IAuthService getAuthService(){
         return this.authService;
     }
 

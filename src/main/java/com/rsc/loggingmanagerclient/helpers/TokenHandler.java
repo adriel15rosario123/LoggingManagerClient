@@ -1,8 +1,8 @@
 package com.rsc.loggingmanagerclient.helpers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rsc.loggingmanagerclient.dtos.TokenDto;
-import com.rsc.loggingmanagerclient.enums.ApiUrl;
+import com.rsc.loggingmanagerclient.dtos.TokenStatusDto;
+import com.rsc.loggingmanagerclient.enums.ApiUrls;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -25,7 +25,7 @@ public class TokenHandler {
 
     public static Boolean isTokenValid(){
         String accessToken = getPref("jwt");
-        String url = ApiUrl.BASE_URL.toString()+ "auth/token/status?token="+accessToken;
+        String url = ApiUrls.BASE_URL.toString()+ "auth/token/status?token="+accessToken;
 
         try(HttpClient client = HttpClient.newHttpClient()){
 
@@ -40,9 +40,9 @@ public class TokenHandler {
 
             System.out.println(response.body());
 
-            TokenDto tokenDto = objectMapper.readValue(response.body(), TokenDto.class);
+            TokenStatusDto tokenStatusDto = objectMapper.readValue(response.body(), TokenStatusDto.class);
 
-            return tokenDto.getIsActive();
+            return tokenStatusDto.getIsActive();
 
         }catch (Exception e){
             e.printStackTrace();
