@@ -1,16 +1,19 @@
 package com.rsc.loggingmanagerclient;
 
-import com.rsc.loggingmanagerclient.enums.ViewEnum;
+import com.rsc.loggingmanagerclient.enums.Views;
 import com.rsc.loggingmanagerclient.factories.ViewModelFactory;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
 import com.rsc.loggingmanagerclient.views.HomeController;
 import com.rsc.loggingmanagerclient.views.LoginController;
 import com.rsc.loggingmanagerclient.views.LogoutController;
+import com.rsc.loggingmanagerclient.views.ServerOffController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ViewHandler {
 
@@ -46,19 +49,24 @@ public class ViewHandler {
 
         //check if the token is valid and if it's valid open the home view directly
         if(TokenHandler.isTokenValid()){
-            openView(ViewEnum.HOME);
+            openView(Views.HOME);
         }else{
-            openView(ViewEnum.LOGIN);
+            openView(Views.LOGIN);
         }
     }
 
-    public void openView(ViewEnum viewToOpen) throws Exception{
+    public void openView(Views viewToOpen) {
         Scene scene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
 
         loader.setLocation(LoggingManagerApp.class.getResource(viewToOpen.toString()));
-        root = loader.load();
+
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         switch (viewToOpen){
             case LOGIN -> {
@@ -80,14 +88,19 @@ public class ViewHandler {
         stage.show();
     }
 
-    public void openModal(ViewEnum modalToOpen) throws Exception{
+    public void openModal(Views modalToOpen){
         dialog = new Stage();
         Scene scene = null;
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
 
         loader.setLocation(LoggingManagerApp.class.getResource(modalToOpen.toString()));
-        root = loader.load();
+
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         switch (modalToOpen){
             case LOGOUT_MODAL -> {
@@ -98,6 +111,14 @@ public class ViewHandler {
                 dialog.setTitle("Logout");
                 dialog.setResizable(false);
             }
+            case SERVER_OFF_MODAL -> {
+                ServerOffController modal = loader.getController();
+                //modal.init(viewModelFactory.getLogoutViewModel());
+                dialog.initModality(Modality.WINDOW_MODAL);
+                dialog.initOwner(this.stage);
+                dialog.setTitle("Server Off");
+                dialog.setResizable(false);
+            }
         }
 
         scene = new Scene(root);
@@ -105,7 +126,7 @@ public class ViewHandler {
         dialog.showAndWait();
     }
 
-    public void closeModal() throws Exception{
+    public void closeModal(){
         if(dialog != null){
             dialog.close();
         }

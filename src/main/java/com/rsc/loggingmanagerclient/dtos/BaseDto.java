@@ -2,17 +2,17 @@ package com.rsc.loggingmanagerclient.dtos;
 
 public class BaseDto<T> {
 
-    private T responseData;
-    private int errorCode;
+    private T data;
+    private Integer errorCode;
     private String errorMessage;
 
-    public BaseDto(T responseData, int errorCode, String errorMessage) {
-        this.responseData = responseData;
+    public BaseDto(T data, Integer errorCode, String errorMessage) {
+        this.data = data;
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
 
-    public BaseDto(int errorCode, String errorMessage) {
+    public BaseDto(Integer errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
@@ -21,19 +21,19 @@ public class BaseDto<T> {
 
     }
 
-    public T getResponseData() {
-        return responseData;
+    public T getData() {
+        return data;
     }
 
-    public void setResponseData(T responseData) {
-        this.responseData = responseData;
+    public void setData(T data) {
+        this.data = data;
     }
 
-    public int getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(int errorCode) {
+    public void setErrorCode(Integer errorCode) {
         this.errorCode = errorCode;
     }
 

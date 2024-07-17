@@ -20,7 +20,7 @@ public class ViewModelFactory {
     }
 
     public LoginViewModel getLoginViewModel() {
-        this.loginViewModel = new LoginViewModel(serviceFactory.getUserService());
+        this.loginViewModel = new LoginViewModel();
         return this.loginViewModel;
     }
 

@@ -1,44 +1,25 @@
 package com.rsc.loggingmanagerclient.dtos;
-
-import java.util.Date;
-
 public class LoginDto {
 
-    private String accessToken;
-    private Date expires;
-    private BaseDto<UserDto> response;
-
-    public LoginDto(String accessToken, Date expiresAt, BaseDto<UserDto> response) {
-        this.accessToken = accessToken;
-        this.expires = expiresAt;
-        this.response = response;
-    }
+    private UserDto user;
+    private TokenDto token;
 
     public LoginDto() {
-
     }
 
-    public String getAccessToken() {
-        return accessToken;
+    public UserDto getUser() {
+        return user;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setUser(UserDto user) {
+        this.user = user;
     }
 
-    public Date getExpires() {
-        return expires;
+    public TokenDto getToken() {
+        return token;
     }
 
-    public void setExpires(Date expiresAt) {
-        this.expires = expiresAt;
-    }
-
-    public BaseDto<UserDto> getResponse() {
-        return response;
-    }
-
-    public void setResponse(BaseDto<UserDto> response) {
-        this.response = response;
+    public void setToken(TokenDto token) {
+        this.token = token;
     }
 }

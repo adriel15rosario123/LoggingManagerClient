@@ -1,23 +1,17 @@
 package com.rsc.loggingmanagerclient.viewmodels;
 
-import com.rsc.loggingmanagerclient.enums.ViewEnum;
+import com.rsc.loggingmanagerclient.enums.Views;
+import com.rsc.loggingmanagerclient.helpers.TokenHandler;
 
 public class LogoutViewModel extends BaseViewModel{
 
     public void signOut(){
-        try {
-            viewHandler.closeModal();
-            viewHandler.openView(ViewEnum.LOGIN);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        TokenHandler.savePref("jwt","default");
+        viewHandler.closeModal();
+        viewHandler.openView(Views.LOGIN);
     }
 
     public void cancel(){
-        try {
-            viewHandler.closeModal();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        viewHandler.closeModal();
     }
 }
