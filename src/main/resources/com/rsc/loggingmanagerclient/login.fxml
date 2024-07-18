@@ -19,9 +19,9 @@
          </font></Label>
       <TextField fx:id="usernameTf" layoutX="53.0" layoutY="140.0" prefHeight="25.0" prefWidth="240.0" />
       <PasswordField fx:id="passwordPf" layoutX="53.0" layoutY="221.0" prefHeight="25.0" prefWidth="240.0" />
-      <Button fx:id="loginBt" layoutX="53.0" layoutY="285.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #5fe874;" text="LOG IN">
+      <Button fx:id="loginBt" layoutX="53.0" layoutY="285.0" mnemonicParsing="false" onAction="#onLoginClick" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #5fe874;" text="LOG IN" textFill="WHITE">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="14.0" />
          </font></Button>
       <Label fx:id="errorMessageLb" layoutX="53.0" layoutY="254.0" textFill="#f50000">
          <font>

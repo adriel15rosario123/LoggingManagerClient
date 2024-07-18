@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rsc.loggingmanagerclient.contracts.ISystemService;
 import com.rsc.loggingmanagerclient.dtos.BaseDto;
+import com.rsc.loggingmanagerclient.dtos.CreateSystemDto;
 import com.rsc.loggingmanagerclient.dtos.SystemDto;
 import com.rsc.loggingmanagerclient.enums.ApiUrls;
+import com.rsc.loggingmanagerclient.exceptions.UserAlreadyExistException;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
 
 import java.net.URI;
@@ -46,5 +48,42 @@ public class SystemService implements ISystemService {
         }
 
         return null;
+    }
+
+    @Override
+    public BaseDto<String> CreateSystem(CreateSystemDto createSystemDto) throws Exception {
+
+        String accessToken = TokenHandler.getPref("jwt");
+        String url = ApiUrls.BASE_URL+ "systems";
+
+        try(HttpClient httpClient = HttpClient.newHttpClient()){
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            String requestValues = objectMapper.writeValueAsString(createSystemDto);
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Authorization","Bearer "+accessToken)
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(requestValues))
+                    .build();
+
+            // Send the request and get the response
+            HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            TypeReference<BaseDto<String>> typeRef = new TypeReference<>() {};
+
+            BaseDto<String> response = objectMapper.readValue(httpResponse.body(),typeRef);
+
+            if(response.getErrorCode() == null){
+                return response;
+            }
+            else if(response.getErrorCode() == -1){
+                throw new UserAlreadyExistException("Username already exist!!");
+            }else{
+                throw new Exception("Something went wrong :(");
+            }
+        }
+
     }
 }

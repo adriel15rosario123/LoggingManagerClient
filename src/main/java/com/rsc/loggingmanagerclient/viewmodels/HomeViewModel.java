@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 public class HomeViewModel extends BaseViewModel{
 
     private ObservableList<SystemModel> systems;
@@ -44,6 +43,10 @@ public class HomeViewModel extends BaseViewModel{
 
     public void logout(){
         viewHandler.openModal(Views.LOGOUT_MODAL);
+    }
+
+    public void enrollSystem(){
+        viewHandler.openView(Views.ENROLL_SYSTEM);
     }
 
     public ObservableList<SystemModel> getSystems() {

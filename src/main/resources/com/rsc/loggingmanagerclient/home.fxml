@@ -22,6 +22,6 @@
       </TableView>
       <Label layoutX="16.0" layoutY="348.0" text="NO. OF RESULTS:" />
       <Label fx:id="NumOfSysLb" layoutX="115.0" layoutY="348.0" text="3" />
-      <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #9d9ee3;" text="enroll system" textFill="WHITE" />
+      <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#onEnrollSystemClick" style="-fx-background-color: #9d9ee3;" text="enroll system" textFill="WHITE" />
    </children>
 </AnchorPane>

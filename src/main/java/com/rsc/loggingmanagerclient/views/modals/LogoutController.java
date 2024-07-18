@@ -1,4 +1,4 @@
-package com.rsc.loggingmanagerclient.views;
+package com.rsc.loggingmanagerclient.views.modals;
 
 import com.rsc.loggingmanagerclient.viewmodels.LogoutViewModel;
 import javafx.fxml.FXML;
