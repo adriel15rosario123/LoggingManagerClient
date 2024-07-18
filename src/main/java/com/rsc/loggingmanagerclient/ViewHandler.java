@@ -3,10 +3,12 @@ package com.rsc.loggingmanagerclient;
 import com.rsc.loggingmanagerclient.enums.Views;
 import com.rsc.loggingmanagerclient.factories.ViewModelFactory;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
+import com.rsc.loggingmanagerclient.views.EnrollSystemController;
 import com.rsc.loggingmanagerclient.views.HomeController;
 import com.rsc.loggingmanagerclient.views.LoginController;
-import com.rsc.loggingmanagerclient.views.LogoutController;
-import com.rsc.loggingmanagerclient.views.ServerOffController;
+import com.rsc.loggingmanagerclient.views.modals.LogoutController;
+import com.rsc.loggingmanagerclient.views.modals.ServerOffController;
+import com.rsc.loggingmanagerclient.views.modals.SuccessfullyCreatedSystemController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,9 +16,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Stack;
 
 public class ViewHandler {
 
+    private static Stack<Views> visitViews = new Stack<>();
     private static ViewHandler viewHandler;
     private Stage stage;
     private Stage dialog;
@@ -80,6 +84,14 @@ public class ViewHandler {
                 view.init(viewModelFactory.getHomeViewModel());
                 stage.setResizable(false);
                 stage.setTitle("Home");
+                visitViews.push(Views.HOME);
+            }
+            case ENROLL_SYSTEM -> {
+                EnrollSystemController view = loader.getController();
+                view.init(viewModelFactory.getEnrollSystemViewModel());
+                stage.setResizable(false);
+                stage.setTitle("Enroll System");
+                visitViews.push(Views.ENROLL_SYSTEM);
             }
         }
 
@@ -113,10 +125,16 @@ public class ViewHandler {
             }
             case SERVER_OFF_MODAL -> {
                 ServerOffController modal = loader.getController();
-                //modal.init(viewModelFactory.getLogoutViewModel());
                 dialog.initModality(Modality.WINDOW_MODAL);
                 dialog.initOwner(this.stage);
                 dialog.setTitle("Server Off");
+                dialog.setResizable(false);
+            }
+            case SUCCESSFULLY_CREATED_SYSTEM -> {
+                SuccessfullyCreatedSystemController modal = loader.getController();
+                dialog.initModality(Modality.WINDOW_MODAL);
+                dialog.initOwner(this.stage);
+                dialog.setTitle("Successfully created");
                 dialog.setResizable(false);
             }
         }
@@ -132,4 +150,8 @@ public class ViewHandler {
         }
     }
 
+    public void goToPrevView(){
+        visitViews.pop();
+        openView(visitViews.peek());
+    }
 }

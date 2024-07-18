@@ -1,5 +1,6 @@
 package com.rsc.loggingmanagerclient.factories;
 
+import com.rsc.loggingmanagerclient.viewmodels.EnrollSystemViewModel;
 import com.rsc.loggingmanagerclient.viewmodels.HomeViewModel;
 import com.rsc.loggingmanagerclient.viewmodels.LoginViewModel;
 import com.rsc.loggingmanagerclient.viewmodels.LogoutViewModel;
@@ -11,6 +12,8 @@ public class ViewModelFactory {
     private HomeViewModel homeViewModel;
 
     private LogoutViewModel logoutViewModel;
+
+    private EnrollSystemViewModel enrollSystemViewModel;
 
     private ServiceFactory serviceFactory;
 
@@ -32,6 +35,11 @@ public class ViewModelFactory {
     public LogoutViewModel getLogoutViewModel(){
         this.logoutViewModel = new LogoutViewModel();
         return this.logoutViewModel;
+    }
+
+    public EnrollSystemViewModel getEnrollSystemViewModel(){
+        this.enrollSystemViewModel = new EnrollSystemViewModel();
+        return this.enrollSystemViewModel;
     }
 
 }

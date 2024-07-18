@@ -12,18 +12,33 @@ public enum Views {
         @Override
         public String toString() { return "home.fxml";}
     },
-    
+
+    ENROLL_SYSTEM{
+        @Override
+        public String toString() {
+            return "enroll-system.fxml";
+        }
+    },
+
+    //MODALS
     LOGOUT_MODAL{
         @Override
         public String toString() {
-            return "logout-popup.fxml";
+            return "modals/logout-popup.fxml";
         }
     },
 
     SERVER_OFF_MODAL{
         @Override
         public String toString() {
-            return "server-off-popup.fxml";
+            return "modals/server-off-popup.fxml";
+        }
+    },
+
+    SUCCESSFULLY_CREATED_SYSTEM{
+        @Override
+        public String toString() {
+            return "modals/successfully-created-system.fxml";
         }
     }
 }

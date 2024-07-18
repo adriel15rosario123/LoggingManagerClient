@@ -240,4 +240,7 @@ public class HomeController {
         this.homeViewModel.logout();
     }
 
+    public void onEnrollSystemClick(){
+        this.homeViewModel.enrollSystem();
+    }
 }
