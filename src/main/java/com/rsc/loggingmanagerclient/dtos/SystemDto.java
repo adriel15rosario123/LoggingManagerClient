@@ -4,7 +4,9 @@ import java.util.Date;
 
 public class SystemDto {
 
-    private int enrolledSystemId;
+    private int systemId;
+    private String systemUsername;
+    private String systemPassword;
     private String systemName;
     private Date enrolledDate;
     private Date lastUpdatedDate;
@@ -14,12 +16,28 @@ public class SystemDto {
     public SystemDto() {
     }
 
-    public int getEnrolledSystemId() {
-        return enrolledSystemId;
+    public String getSystemUsername() {
+        return systemUsername;
     }
 
-    public void setEnrolledSystemId(int enrolledSystemId) {
-        this.enrolledSystemId = enrolledSystemId;
+    public void setSystemUsername(String systemUsername) {
+        this.systemUsername = systemUsername;
+    }
+
+    public String getSystemPassword() {
+        return systemPassword;
+    }
+
+    public void setSystemPassword(String systemPassword) {
+        this.systemPassword = systemPassword;
+    }
+
+    public int getSystemId() {
+        return systemId;
+    }
+
+    public void setSystemId(int enrolledSystemId) {
+        this.systemId = enrolledSystemId;
     }
 
     public String getSystemName() {

@@ -20,6 +20,13 @@ public enum Views {
         }
     },
 
+    UPDATE_SYSTEM{
+        @Override
+        public String toString() {
+            return "update-system.fxml";
+        }
+    },
+
     //MODALS
     LOGOUT_MODAL{
         @Override
@@ -39,6 +46,13 @@ public enum Views {
         @Override
         public String toString() {
             return "modals/successfully-created-system.fxml";
+        }
+    },
+
+    SUCCESSFULLY_UPDATED_SYSTEM{
+        @Override
+        public String toString() {
+            return "modals/successfully-updated-system.fxml";
         }
     }
 }

@@ -4,6 +4,7 @@ import com.rsc.loggingmanagerclient.contracts.ISystemService;
 import com.rsc.loggingmanagerclient.dtos.SystemDto;
 import com.rsc.loggingmanagerclient.enums.Views;
 import com.rsc.loggingmanagerclient.models.SystemModel;
+import com.rsc.loggingmanagerclient.models.UpdateSystemModel;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,12 +33,14 @@ public class HomeViewModel extends BaseViewModel{
 
     private SystemModel convertToSystemModel(SystemDto systemDto) {
         return new SystemModel(
-                systemDto.getEnrolledSystemId(),
+                systemDto.getSystemId(),
                 systemDto.getSystemName(),
                 systemDto.getEnrolledDate().toString(),
                 systemDto.getLastUpdatedDate() == null ? "" : systemDto.getLastUpdatedDate().toString(),
                 systemDto.getErrorLogs(),
-                systemDto.getTrackingLogs()
+                systemDto.getTrackingLogs(),
+                systemDto.getSystemUsername(),
+                systemDto.getSystemPassword()
         );
     }
 
@@ -55,6 +58,10 @@ public class HomeViewModel extends BaseViewModel{
 
     public StringProperty numberOfSystemsProperty() {
         return SystemModel.numberOfSystemsProperty();
+    }
+
+    public void openEditView(UpdateSystemModel updateSystemModel){
+        viewHandler.openUpdateSystemView(updateSystemModel);
     }
 
 }

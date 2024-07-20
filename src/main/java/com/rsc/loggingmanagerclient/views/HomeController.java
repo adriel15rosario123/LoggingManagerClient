@@ -1,6 +1,7 @@
 package com.rsc.loggingmanagerclient.views;
 
 import com.rsc.loggingmanagerclient.models.SystemModel;
+import com.rsc.loggingmanagerclient.models.UpdateSystemModel;
 import com.rsc.loggingmanagerclient.viewmodels.HomeViewModel;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -215,6 +216,8 @@ public class HomeController {
 
                         updateButton.setOnAction(event -> {
                             SystemModel system = getTableView().getItems().get(getIndex());
+                            UpdateSystemModel updateSystemModel = new UpdateSystemModel(system.getEnrolledSystemId(),system.getSystemUsername(),system.getSystemPassword(),system.getSystemName());
+                            homeViewModel.openEditView(updateSystemModel);
                             //homeViewModel.updateSystem(system);
                         });
                     }
