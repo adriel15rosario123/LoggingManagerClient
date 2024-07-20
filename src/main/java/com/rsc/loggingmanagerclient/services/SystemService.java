@@ -6,6 +6,7 @@ import com.rsc.loggingmanagerclient.contracts.ISystemService;
 import com.rsc.loggingmanagerclient.dtos.BaseDto;
 import com.rsc.loggingmanagerclient.dtos.CreateSystemDto;
 import com.rsc.loggingmanagerclient.dtos.SystemDto;
+import com.rsc.loggingmanagerclient.dtos.UpdateSystemDto;
 import com.rsc.loggingmanagerclient.enums.ApiUrls;
 import com.rsc.loggingmanagerclient.exceptions.UserAlreadyExistException;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
@@ -85,5 +86,40 @@ public class SystemService implements ISystemService {
             }
         }
 
+    }
+
+    @Override
+    public BaseDto<String> UpdateSystem(int systemId,UpdateSystemDto updateSystemDto) throws Exception {
+        String accessToken = TokenHandler.getPref("jwt");
+        String url = ApiUrls.BASE_URL+ "systems/"+systemId;
+
+        try(HttpClient httpClient = HttpClient.newHttpClient()){
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            String requestValues = objectMapper.writeValueAsString(updateSystemDto);
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .method("PATCH",HttpRequest.BodyPublishers.ofString(requestValues))
+                    .header("Authorization","Bearer "+accessToken)
+                    .header("Content-Type", "application/json")
+                    .build();
+
+            // Send the request and get the response
+            HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            TypeReference<BaseDto<String>> typeRef = new TypeReference<>() {};
+
+            BaseDto<String> response = objectMapper.readValue(httpResponse.body(),typeRef);
+
+            if(response.getErrorCode() == null){
+                return response;
+            }
+            else if(response.getErrorCode() == -1){
+                throw new UserAlreadyExistException("Username already exist!!");
+            }else{
+                throw new Exception("Something went wrong :(");
+            }
+        }
     }
 }
