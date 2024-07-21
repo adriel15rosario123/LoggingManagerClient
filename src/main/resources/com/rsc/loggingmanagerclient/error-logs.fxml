@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="463.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rsc.loggingmanagerclient.views.ErrorLogsController">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToPrevView" text="&lt;-">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="634.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogoutClick" style="-fx-background-color: #e66c6c;" text="Logout" textFill="WHITE" />
+      <Label fx:id="SystemNameLb" layoutX="131.0" layoutY="51.0" text="System Name" />
+      <Label layoutX="14.0" layoutY="51.0" text="Error Logs of system:" />
+      <Pagination fx:id="errorLogsPg" layoutX="14.0" layoutY="77.0" prefHeight="374.0" prefWidth="674.0" />
+      <TableView fx:id="errorLogsTv" layoutX="14.0" layoutY="77.0" prefHeight="319.0" prefWidth="674.0">
+        <columns>
+          <TableColumn fx:id="LoggingDateTc" prefWidth="101.0" text="Logging Date" />
+          <TableColumn fx:id="MethodNameTc" prefWidth="117.0" text="Method Name" />
+            <TableColumn fx:id="MethodInputTc" prefWidth="118.0" text="Method Input" />
+            <TableColumn fx:id="MethodOutputTc" minWidth="0.0" prefWidth="126.0" text="Method Output" />
+            <TableColumn fx:id="MessageTc" prefWidth="127.0" text="Message" />
+            <TableColumn fx:id="OperationsTc" prefWidth="90.0" text="Operations" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

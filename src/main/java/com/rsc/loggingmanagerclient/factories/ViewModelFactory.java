@@ -15,6 +15,8 @@ public class ViewModelFactory {
 
     private UpdateSystemViewModel updateSystemViewModel;
 
+    private ErrorLogsViewModel errorLogsViewModel;
+
     private ServiceFactory serviceFactory;
 
     public ViewModelFactory(ServiceFactory serviceFactory) {
@@ -45,6 +47,11 @@ public class ViewModelFactory {
     public UpdateSystemViewModel getUpdateSystemViewModel(UpdateSystemModel updateSystemModel){
         this.updateSystemViewModel = new UpdateSystemViewModel(updateSystemModel);
         return this.updateSystemViewModel;
+    }
+
+    public ErrorLogsViewModel getErrorLogsViewModel(int systemId, String systemName){
+        this.errorLogsViewModel = new ErrorLogsViewModel(serviceFactory.getSystemService(), systemId,systemName);
+        return this.errorLogsViewModel;
     }
 
 }

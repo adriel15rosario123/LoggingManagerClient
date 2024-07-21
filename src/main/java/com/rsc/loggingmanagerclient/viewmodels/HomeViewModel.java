@@ -64,4 +64,8 @@ public class HomeViewModel extends BaseViewModel{
         viewHandler.openUpdateSystemView(updateSystemModel);
     }
 
+    public void openErrorLogs(int systemId, String systemName){
+        viewHandler.openErrorLogsView(systemId,systemName);
+    }
+
 }
