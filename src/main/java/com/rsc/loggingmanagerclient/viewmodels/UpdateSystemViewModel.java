@@ -7,8 +7,6 @@ public class UpdateSystemViewModel extends BaseViewModel {
 
     private UpdateSystemModel updateSystemModel;
 
-
-
     public UpdateSystemViewModel(UpdateSystemModel updateSystemModel) {
         this.updateSystemModel = updateSystemModel;
     }

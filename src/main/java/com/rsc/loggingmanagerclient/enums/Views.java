@@ -27,6 +27,13 @@ public enum Views {
         }
     },
 
+    ERROR_LOGS{
+        @Override
+        public String toString() {
+            return "error-logs.fxml";
+        }
+    },
+
     //MODALS
     LOGOUT_MODAL{
         @Override

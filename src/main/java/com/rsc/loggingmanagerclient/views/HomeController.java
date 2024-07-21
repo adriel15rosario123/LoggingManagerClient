@@ -91,7 +91,8 @@ public class HomeController {
 
                         openErrorLogsBt.setOnAction(event -> {
                             SystemModel system = getTableView().getItems().get(getIndex());
-                            //homeViewModel.deleteSystem(system);
+                            System.out.println(system.getEnrolledSystemId());
+                            homeViewModel.openErrorLogs(system.getEnrolledSystemId(),system.getSystemName());
                         });
                     }
 
@@ -218,7 +219,6 @@ public class HomeController {
                             SystemModel system = getTableView().getItems().get(getIndex());
                             UpdateSystemModel updateSystemModel = new UpdateSystemModel(system.getEnrolledSystemId(),system.getSystemUsername(),system.getSystemPassword(),system.getSystemName());
                             homeViewModel.openEditView(updateSystemModel);
-                            //homeViewModel.updateSystem(system);
                         });
                     }
 

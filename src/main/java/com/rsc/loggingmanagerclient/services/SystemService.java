@@ -3,10 +3,7 @@ package com.rsc.loggingmanagerclient.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rsc.loggingmanagerclient.contracts.ISystemService;
-import com.rsc.loggingmanagerclient.dtos.BaseDto;
-import com.rsc.loggingmanagerclient.dtos.CreateSystemDto;
-import com.rsc.loggingmanagerclient.dtos.SystemDto;
-import com.rsc.loggingmanagerclient.dtos.UpdateSystemDto;
+import com.rsc.loggingmanagerclient.dtos.*;
 import com.rsc.loggingmanagerclient.enums.ApiUrls;
 import com.rsc.loggingmanagerclient.exceptions.UserAlreadyExistException;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
@@ -121,5 +118,35 @@ public class SystemService implements ISystemService {
                 throw new Exception("Something went wrong :(");
             }
         }
+    }
+
+    @Override
+    public PaginatedBaseDto<List<ErrorLogDto>> getErrorLogs(int systemId,int pageSize,int pageNumber) {
+        String accessToken = TokenHandler.getPref("jwt");
+        String url = ApiUrls.BASE_URL+ "systems/"+systemId+"/errors?pageSize="+pageSize+"&pageNumber="+pageNumber;
+
+        try(HttpClient httpClient = HttpClient.newHttpClient()){
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Authorization","Bearer "+accessToken)
+                    .build();
+
+            // Send the request and get the response
+            HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            TypeReference<PaginatedBaseDto<List<ErrorLogDto>>> typeRef = new TypeReference<>() {};
+
+            PaginatedBaseDto<List<ErrorLogDto>> response = objectMapper.readValue(httpResponse.body(),typeRef);
+
+            return response;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

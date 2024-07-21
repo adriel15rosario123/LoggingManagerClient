@@ -5,10 +5,7 @@ import com.rsc.loggingmanagerclient.factories.ViewModelFactory;
 import com.rsc.loggingmanagerclient.helpers.TokenHandler;
 import com.rsc.loggingmanagerclient.models.UpdateSystemModel;
 import com.rsc.loggingmanagerclient.viewmodels.UpdateSystemViewModel;
-import com.rsc.loggingmanagerclient.views.EnrollSystemController;
-import com.rsc.loggingmanagerclient.views.HomeController;
-import com.rsc.loggingmanagerclient.views.LoginController;
-import com.rsc.loggingmanagerclient.views.UpdateSystemController;
+import com.rsc.loggingmanagerclient.views.*;
 import com.rsc.loggingmanagerclient.views.modals.LogoutController;
 import com.rsc.loggingmanagerclient.views.modals.ServerOffController;
 import com.rsc.loggingmanagerclient.views.modals.SuccessfullyCreatedSystemController;
@@ -183,6 +180,30 @@ public class ViewHandler {
         stage.setResizable(false);
         stage.setTitle("Update System");
         visitViews.push(Views.UPDATE_SYSTEM);
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void openErrorLogsView(int systemId,String systemName){
+        Scene scene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(LoggingManagerApp.class.getResource(Views.ERROR_LOGS.toString()));
+
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        ErrorLogsController view = loader.getController();
+        view.init(viewModelFactory.getErrorLogsViewModel(systemId,systemName));
+        stage.setResizable(false);
+        stage.setTitle("Error logs");
+        visitViews.push(Views.ERROR_LOGS);
 
         scene = new Scene(root);
         stage.setScene(scene);
