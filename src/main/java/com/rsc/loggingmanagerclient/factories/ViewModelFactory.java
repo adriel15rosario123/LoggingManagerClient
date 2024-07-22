@@ -1,5 +1,6 @@
 package com.rsc.loggingmanagerclient.factories;
 
+import com.rsc.loggingmanagerclient.models.TrackingLogModel;
 import com.rsc.loggingmanagerclient.models.UpdateSystemModel;
 import com.rsc.loggingmanagerclient.viewmodels.*;
 
@@ -16,6 +17,8 @@ public class ViewModelFactory {
     private UpdateSystemViewModel updateSystemViewModel;
 
     private ErrorLogsViewModel errorLogsViewModel;
+
+    private TrackingLogViewModel trackingLogViewModel;
 
     private ServiceFactory serviceFactory;
 
@@ -52,6 +55,11 @@ public class ViewModelFactory {
     public ErrorLogsViewModel getErrorLogsViewModel(int systemId, String systemName){
         this.errorLogsViewModel = new ErrorLogsViewModel(serviceFactory.getSystemService(), systemId,systemName);
         return this.errorLogsViewModel;
+    }
+
+    public TrackingLogViewModel getTrackingLogsViewModel(int systemId, String systemName){
+        this.trackingLogViewModel = new TrackingLogViewModel(serviceFactory.getSystemService(), systemId,systemName);
+        return this.trackingLogViewModel;
     }
 
 }

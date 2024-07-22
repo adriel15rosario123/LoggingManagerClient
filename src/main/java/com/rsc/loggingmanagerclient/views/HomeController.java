@@ -91,7 +91,6 @@ public class HomeController {
 
                         openErrorLogsBt.setOnAction(event -> {
                             SystemModel system = getTableView().getItems().get(getIndex());
-                            System.out.println(system.getEnrolledSystemId());
                             homeViewModel.openErrorLogs(system.getEnrolledSystemId(),system.getSystemName());
                         });
                     }
@@ -145,7 +144,7 @@ public class HomeController {
 
                         openTrackingLogsBt.setOnAction(event -> {
                             SystemModel system = getTableView().getItems().get(getIndex());
-                            //homeViewModel.deleteSystem(system);
+                            homeViewModel.openTrackingLogs(system.getEnrolledSystemId(),system.getSystemName());
                         });
                     }
 

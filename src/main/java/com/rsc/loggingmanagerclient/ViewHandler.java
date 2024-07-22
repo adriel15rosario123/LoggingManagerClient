@@ -93,13 +93,6 @@ public class ViewHandler {
                 stage.setTitle("Enroll System");
                 visitViews.push(Views.ENROLL_SYSTEM);
             }
-//            case UPDATE_SYSTEM -> {
-//                UpdateSystemController view = loader.getController();
-//                view.init(viewModelFactory.getUpdateSystemViewModel());
-//                stage.setResizable(false);
-//                stage.setTitle("Update System");
-//                visitViews.push(Views.UPDATE_SYSTEM);
-//            }
         }
 
         scene = new Scene(root);
@@ -204,6 +197,30 @@ public class ViewHandler {
         stage.setResizable(false);
         stage.setTitle("Error logs");
         visitViews.push(Views.ERROR_LOGS);
+
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void openTrackingLogsView(int systemId,String systemName){
+        Scene scene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(LoggingManagerApp.class.getResource(Views.TRACKING_LOGS.toString()));
+
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        TrackingLogsController view = loader.getController();
+        view.init(viewModelFactory.getTrackingLogsViewModel(systemId,systemName));
+        stage.setResizable(false);
+        stage.setTitle("Error logs");
+        visitViews.push(Views.TRACKING_LOGS);
 
         scene = new Scene(root);
         stage.setScene(scene);
