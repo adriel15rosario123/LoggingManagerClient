@@ -68,4 +68,7 @@ public class HomeViewModel extends BaseViewModel{
         viewHandler.openErrorLogsView(systemId,systemName);
     }
 
+    public void openTrackingLogs(int systemId, String systemName){
+        viewHandler.openTrackingLogsView(systemId,systemName);
+    }
 }

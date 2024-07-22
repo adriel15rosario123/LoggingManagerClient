@@ -149,4 +149,34 @@ public class SystemService implements ISystemService {
 
         return null;
     }
+
+    @Override
+    public PaginatedBaseDto<List<TrackingLogDto>> getTrackingLogs(int systemId, int pageSize, int pageNumber) {
+        String accessToken = TokenHandler.getPref("jwt");
+        String url = ApiUrls.BASE_URL+ "systems/"+systemId+"/trackings?pageSize="+pageSize+"&pageNumber="+pageNumber;
+
+        try(HttpClient httpClient = HttpClient.newHttpClient()){
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Authorization","Bearer "+accessToken)
+                    .build();
+
+            // Send the request and get the response
+            HttpResponse<String> httpResponse = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            TypeReference<PaginatedBaseDto<List<TrackingLogDto>>> typeRef = new TypeReference<>() {};
+
+            PaginatedBaseDto<List<TrackingLogDto>> response = objectMapper.readValue(httpResponse.body(),typeRef);
+
+            return response;
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

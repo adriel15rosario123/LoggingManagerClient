@@ -12,4 +12,6 @@ public interface ISystemService {
     BaseDto<String> UpdateSystem(int systemId,UpdateSystemDto updateSystemDto) throws Exception;
 
     PaginatedBaseDto<List<ErrorLogDto>> getErrorLogs(int systemId, int pageSize,int pageNumber);
+
+    PaginatedBaseDto<List<TrackingLogDto>> getTrackingLogs(int systemId, int pageSize,int pageNumber);
 }

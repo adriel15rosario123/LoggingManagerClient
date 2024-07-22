@@ -33,6 +33,12 @@ public enum Views {
             return "error-logs.fxml";
         }
     },
+    TRACKING_LOGS{
+        @Override
+        public String toString() {
+            return "tracking-logs.fxml";
+        }
+    },
 
     //MODALS
     LOGOUT_MODAL{

@@ -3,12 +3,11 @@ package com.rsc.loggingmanagerclient.models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class ErrorLogModel extends LogModel {
-
+public class TrackingLogModel extends LogModel {
     private static StringProperty systemName = new SimpleStringProperty();
     private StringProperty message;
 
-    public ErrorLogModel(int logId, String loggingDate, String methodName, String methodInput, String methodOutput, String logType, String message) {
+    public TrackingLogModel(int logId, String loggingDate, String methodName, String methodInput, String methodOutput, String logType, String message) {
         super(logId, loggingDate, methodName, methodInput, methodOutput, logType);
         this.message = new SimpleStringProperty(message);
     }
@@ -35,6 +34,6 @@ public class ErrorLogModel extends LogModel {
     }
 
     public static void setSystemName(String systemName) {
-        ErrorLogModel.systemName.set(systemName);
+        TrackingLogModel.systemName.set(systemName);
     }
 }
