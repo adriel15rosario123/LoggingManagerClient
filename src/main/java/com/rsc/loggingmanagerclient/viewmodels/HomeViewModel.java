@@ -71,4 +71,8 @@ public class HomeViewModel extends BaseViewModel{
     public void openTrackingLogs(int systemId, String systemName){
         viewHandler.openTrackingLogsView(systemId,systemName);
     }
+
+    public void openDeleteModal(int systemId){
+        viewHandler.openDeleteSystemModal(systemId);
+    }
 }
