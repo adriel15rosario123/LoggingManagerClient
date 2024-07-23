@@ -28,7 +28,7 @@ public class ErrorLogsViewModel extends BaseViewModel {
     }
 
     public void loadPage(int pageNumber) {
-        PaginatedBaseDto<List<ErrorLogDto>> response = this.systemService.getErrorLogs(systemId, 1, pageNumber);
+        PaginatedBaseDto<List<ErrorLogDto>> response = this.systemService.getErrorLogs(systemId, 12, pageNumber);
         if (response != null) {
             List<ErrorLogModel> listOfErrorLogs = convertToErrorLogModels(response.getData());
             this.errorLogs.setAll(listOfErrorLogs);

@@ -67,5 +67,18 @@ public enum Views {
         public String toString() {
             return "modals/successfully-updated-system.fxml";
         }
+    },
+    SUCCESSFULLY_DELETED_SYSTEM{
+        @Override
+        public String toString() {
+            return "modals/successfully-deleted-system.fxml";
+        }
+    },
+
+    DELETE_SYSTEM_MODAL{
+        @Override
+        public String toString() {
+            return "modals/delete-system-popup.fxml";
+        }
     }
 }

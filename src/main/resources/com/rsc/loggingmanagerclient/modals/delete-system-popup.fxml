@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="169.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rsc.loggingmanagerclient.views.modals.DeleteSystemController">
+   <children>
+      <Label layoutX="132.0" layoutY="25.0" text="Are you sure?" />
+      <Label layoutX="53.0" layoutY="58.0" prefHeight="45.0" prefWidth="232.0" text="if you delete the system all the logs related to it will be deleted too" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="53.0" layoutY="117.0" mnemonicParsing="false" onAction="#onCancelClick" prefHeight="25.0" prefWidth="73.0" text="Cancel" />
+      <Button layoutX="205.0" layoutY="117.0" mnemonicParsing="false" onAction="#onDeleteClick" prefHeight="25.0" prefWidth="73.0" style="-fx-background-color: #e66c6c;" text="Delete" textFill="WHITE" />
+   </children>
+</AnchorPane>

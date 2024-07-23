@@ -27,7 +27,7 @@ public class TrackingLogViewModel extends BaseViewModel{
     }
 
     public void loadPage(int pageNumber) {
-        PaginatedBaseDto<List<TrackingLogDto>> response = this.systemService.getTrackingLogs(systemId, 1, pageNumber);
+        PaginatedBaseDto<List<TrackingLogDto>> response = this.systemService.getTrackingLogs(systemId, 12, pageNumber);
         if (response != null) {
             List<TrackingLogModel> listOfTrackingLogs = convertToTrackingLogModels(response.getData());
             this.trackingLogs.setAll(listOfTrackingLogs);

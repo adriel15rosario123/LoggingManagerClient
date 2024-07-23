@@ -211,7 +211,7 @@ public class HomeController {
 
                         deleteButton.setOnAction(event -> {
                             SystemModel system = getTableView().getItems().get(getIndex());
-                            //homeViewModel.deleteSystem(system);
+                            homeViewModel.openDeleteModal(system.getEnrolledSystemId());
                         });
 
                         updateButton.setOnAction(event -> {

@@ -14,4 +14,6 @@ public interface ISystemService {
     PaginatedBaseDto<List<ErrorLogDto>> getErrorLogs(int systemId, int pageSize,int pageNumber);
 
     PaginatedBaseDto<List<TrackingLogDto>> getTrackingLogs(int systemId, int pageSize,int pageNumber);
+
+    BaseDto<String> DeleteSystem(int systemId) throws Exception;
 }

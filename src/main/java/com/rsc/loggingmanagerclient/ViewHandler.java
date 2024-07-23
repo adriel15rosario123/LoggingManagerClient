@@ -6,9 +6,7 @@ import com.rsc.loggingmanagerclient.helpers.TokenHandler;
 import com.rsc.loggingmanagerclient.models.UpdateSystemModel;
 import com.rsc.loggingmanagerclient.viewmodels.UpdateSystemViewModel;
 import com.rsc.loggingmanagerclient.views.*;
-import com.rsc.loggingmanagerclient.views.modals.LogoutController;
-import com.rsc.loggingmanagerclient.views.modals.ServerOffController;
-import com.rsc.loggingmanagerclient.views.modals.SuccessfullyCreatedSystemController;
+import com.rsc.loggingmanagerclient.views.modals.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -137,6 +135,13 @@ public class ViewHandler {
                 dialog.setTitle("Successfully created");
                 dialog.setResizable(false);
             }
+            case SUCCESSFULLY_DELETED_SYSTEM -> {
+                SuccessfullyDeletedSystemController modal = loader.getController();
+                dialog.initModality(Modality.WINDOW_MODAL);
+                dialog.initOwner(this.stage);
+                dialog.setTitle("System deleted");
+                dialog.setResizable(false);
+            }
         }
 
         scene = new Scene(root);
@@ -225,5 +230,31 @@ public class ViewHandler {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void openDeleteSystemModal(int systemId){
+        dialog = new Stage();
+        Scene scene = null;
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = null;
+
+        loader.setLocation(LoggingManagerApp.class.getResource(Views.DELETE_SYSTEM_MODAL.toString()));
+
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        DeleteSystemController modal = loader.getController();
+        modal.init(viewModelFactory.getDeleteSystemViewModel(systemId));
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(this.stage);
+        dialog.setTitle("Delete system");
+        dialog.setResizable(false);
+
+        scene = new Scene(root);
+        dialog.setScene(scene);
+        dialog.showAndWait();
     }
 }

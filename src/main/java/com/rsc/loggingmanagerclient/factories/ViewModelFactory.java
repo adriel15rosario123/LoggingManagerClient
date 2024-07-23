@@ -20,6 +20,8 @@ public class ViewModelFactory {
 
     private TrackingLogViewModel trackingLogViewModel;
 
+    private DeleteSystemViewModel deleteSystemViewModel;
+
     private ServiceFactory serviceFactory;
 
     public ViewModelFactory(ServiceFactory serviceFactory) {
@@ -60,6 +62,11 @@ public class ViewModelFactory {
     public TrackingLogViewModel getTrackingLogsViewModel(int systemId, String systemName){
         this.trackingLogViewModel = new TrackingLogViewModel(serviceFactory.getSystemService(), systemId,systemName);
         return this.trackingLogViewModel;
+    }
+
+    public DeleteSystemViewModel getDeleteSystemViewModel(int systemId){
+        this.deleteSystemViewModel = new DeleteSystemViewModel(systemId);
+        return this.deleteSystemViewModel;
     }
 
 }
