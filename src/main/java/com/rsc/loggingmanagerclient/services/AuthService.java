@@ -44,6 +44,8 @@ public class AuthService implements IAuthService {
             if(login.getErrorCode() == null){
                 TokenHandler.savePref("userId", String.valueOf(login.getData().getUser().getUserId()));
                 TokenHandler.savePref("jwt",  login.getData().getToken().getKey());
+                TokenHandler.savePref("username", credentialDto.getUsername());
+                TokenHandler.savePref("password", credentialDto.getPassword());
                 return login.getData().getUser();
             }else{
                 throw new IncorrectCredentialException("Invalid credentials!!");

@@ -5,6 +5,8 @@ import com.rsc.loggingmanagerclient.models.UpdateSystemModel;
 import com.rsc.loggingmanagerclient.viewmodels.HomeViewModel;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -36,6 +38,9 @@ public class HomeController {
 
     @FXML
     private TableColumn<SystemModel, Void> OperationsTc;
+
+    @FXML
+    private BarChart<String, Number> systemBc;
 
     @FXML
     private Button logoutBt;
@@ -236,6 +241,27 @@ public class HomeController {
 
         // Set the items for the TableView
         this.EnrolledSystemsTv.setItems(this.homeViewModel.getSystems());
+
+        initBarChart();
+    }
+
+
+    private void initBarChart() {
+        systemBc.setTitle("Logs Summery");
+        systemBc.getData().clear();
+
+        XYChart.Series<String, Number> errorLogsSeries = new XYChart.Series<>();
+        errorLogsSeries.setName("Error Logs");
+
+        XYChart.Series<String, Number> trackingLogsSeries = new XYChart.Series<>();
+        trackingLogsSeries.setName("Tracking Logs");
+
+        for (SystemModel system : homeViewModel.getSystems()) {
+            errorLogsSeries.getData().add(new XYChart.Data<>(system.getSystemName(), system.getErrorLogs()));
+            trackingLogsSeries.getData().add(new XYChart.Data<>(system.getSystemName(), system.getTrackingLogs()));
+        }
+
+        systemBc.getData().addAll(errorLogsSeries, trackingLogsSeries);
     }
 
     public void onLogoutClick(){
