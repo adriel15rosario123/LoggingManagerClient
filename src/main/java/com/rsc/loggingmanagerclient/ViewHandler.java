@@ -45,6 +45,8 @@ public class ViewHandler {
         //add the defaults pref (username, password, userId, userRole, authToke)
         TokenHandler.savePref("userId", TokenHandler.getPref("userId"));
         TokenHandler.savePref("jwt",  TokenHandler.getPref("jwt"));
+        TokenHandler.savePref("username",TokenHandler.getPref("username"));
+        TokenHandler.savePref("password",TokenHandler.getPref("password"));
 
         System.out.println("currentUserId: "+TokenHandler.getPref("userId"));
         System.out.println("currentjwt: "+TokenHandler.getPref("jwt"));
